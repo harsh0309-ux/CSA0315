@@ -1,0 +1,264 @@
+{% extends "base.html" %}
+
+{% block title %}
+Admin Dashboard | UniCourse
+{% endblock %}
+
+{% block content %}
+
+<div class="app-layout">
+
+<aside class="app-sidebar">
+
+    <div class="app-brand">
+
+        <div class="app-brand-icon">
+            ⚙️
+        </div>
+
+        <div>
+            <h2>UniCourse</h2>
+            <span>ADMIN PORTAL</span>
+        </div>
+
+    </div>
+
+
+    <nav class="app-nav">
+
+        <div class="app-nav-title">
+            Overview
+        </div>
+
+        <a href="/admin_dashboard"
+           class="active">
+            📊 Dashboard
+        </a>
+
+        <div class="app-nav-title">
+            Management
+        </div>
+
+        <a href="/view_courses">
+            📚 Courses
+        </a>
+
+        <a href="/add_course">
+            ➕ Add Course
+        </a>
+
+        <a href="/view_instructors">
+            👨‍🏫 Instructors
+        </a>
+
+        <a href="/add_instructor">
+            ➕ Add Instructor
+        </a>
+
+        <div class="app-nav-title">
+            Analytics
+        </div>
+
+        <a href="/waitlist">
+            ⏳ Waitlist
+        </a>
+
+        <a href="/reports">
+            📈 Reports
+        </a>
+
+        <a href="/logout">
+            🚪 Logout
+        </a>
+
+    </nav>
+
+</aside>
+
+
+<main class="app-main">
+
+<header class="app-topbar">
+
+    <div>
+
+        <h1>
+            Administrator Dashboard
+        </h1>
+
+        <p>
+            Manage the complete university course system
+        </p>
+
+    </div>
+
+    <div class="user-avatar">
+        ⚙️
+    </div>
+
+</header>
+
+
+<div class="app-content">
+
+    <div class="page-header">
+
+        <h1>
+            System Overview
+        </h1>
+
+        <p>
+            Monitor students, instructors, courses and requests.
+        </p>
+
+    </div>
+
+
+    <div class="stat-grid">
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📚
+            </div>
+
+            <h2>
+                {{ total_courses }}
+            </h2>
+
+            <p>
+                Total Courses
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🎓
+            </div>
+
+            <h2>
+                {{ total_students }}
+            </h2>
+
+            <p>
+                Registered Students
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                👨‍🏫
+            </div>
+
+            <h2>
+                {{ total_instructors }}
+            </h2>
+
+            <p>
+                Instructors
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📝
+            </div>
+
+            <h2>
+                {{ total_requests }}
+            </h2>
+
+            <p>
+                Pending Requests
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="grid grid-3">
+
+        <div class="card">
+
+            <h2>
+                Course Management
+            </h2>
+
+            <p>
+                Add, edit and manage university courses.
+            </p>
+
+            <br>
+
+            <a href="/view_courses"
+               class="btn btn-primary">
+
+                Manage Courses →
+
+            </a>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>
+                Instructor Management
+            </h2>
+
+            <p>
+                Manage instructors and their assignments.
+            </p>
+
+            <br>
+
+            <a href="/view_instructors"
+               class="btn btn-secondary">
+
+                Manage Instructors →
+
+            </a>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>
+                Reports
+            </h2>
+
+            <p>
+                View system statistics and activity.
+            </p>
+
+            <br>
+
+            <a href="/reports"
+               class="btn btn-secondary">
+
+                View Reports →
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</main>
+
+</div>
+
+{% endblock %}

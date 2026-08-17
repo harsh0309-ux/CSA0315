@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+
+{% block title %}
+Add Instructor | UniCourse
+{% endblock %}
+
+{% block content %}
+
+<div class="app-layout">
+
+<aside class="app-sidebar">
+
+    <div class="app-brand">
+        <div class="app-brand-icon">⚙️</div>
+
+        <div>
+            <h2>UniCourse</h2>
+            <span>ADMIN PORTAL</span>
+        </div>
+    </div>
+
+    <nav class="app-nav">
+
+        <a href="/admin_dashboard">
+            📊 Dashboard
+        </a>
+
+        <a href="/view_courses">
+            📚 Courses
+        </a>
+
+        <a href="/add_course">
+            ➕ Add Course
+        </a>
+
+        <a href="/view_instructors">
+            👨‍🏫 Instructors
+        </a>
+
+        <a href="/add_instructor"
+           class="active">
+            ➕ Add Instructor
+        </a>
+
+        <a href="/reports">
+            📈 Reports
+        </a>
+
+        <a href="/logout">
+            🚪 Logout
+        </a>
+
+    </nav>
+
+</aside>
+
+
+<main class="app-main">
+
+<header class="app-topbar">
+
+    <div>
+        <h1>Add Instructor</h1>
+        <p>Create a new instructor account</p>
+    </div>
+
+</header>
+
+
+<div class="app-content">
+
+    <div class="page-header">
+
+        <h1>
+            New Instructor
+        </h1>
+
+        <p>
+            Enter instructor credentials and profile information.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <form method="POST">
+
+            <div class="form-grid">
+
+                <div class="form-group full">
+
+                    <label>
+                        Instructor Name
+                    </label>
+
+                    <input
+                        type="text"
+                        name="instructor_name"
+                        placeholder="Enter instructor full name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="instructor@university.edu"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Create password"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="btn btn-primary">
+
+                Add Instructor →
+
+            </button>
+
+
+            <a href="/view_instructors"
+               class="btn btn-secondary">
+
+                Cancel
+
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+</main>
+
+</div>
+
+{% endblock %}

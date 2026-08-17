@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+
+{% block title %}
+Manage Instructors | UniCourse
+{% endblock %}
+
+{% block content %}
+
+<div class="app-layout">
+
+<aside class="app-sidebar">
+
+    <div class="app-brand">
+        <div class="app-brand-icon">⚙️</div>
+
+        <div>
+            <h2>UniCourse</h2>
+            <span>ADMIN PORTAL</span>
+        </div>
+    </div>
+
+    <nav class="app-nav">
+
+        <a href="/admin_dashboard">
+            📊 Dashboard
+        </a>
+
+        <a href="/view_courses">
+            📚 Courses
+        </a>
+
+        <a href="/add_course">
+            ➕ Add Course
+        </a>
+
+        <a href="/view_instructors"
+           class="active">
+            👨‍🏫 Instructors
+        </a>
+
+        <a href="/add_instructor">
+            ➕ Add Instructor
+        </a>
+
+        <a href="/reports">
+            📈 Reports
+        </a>
+
+        <a href="/logout">
+            🚪 Logout
+        </a>
+
+    </nav>
+
+</aside>
+
+
+<main class="app-main">
+
+<header class="app-topbar">
+
+    <div>
+
+        <h1>
+            Instructor Management
+        </h1>
+
+        <p>
+            View and manage university instructors
+        </p>
+
+    </div>
+
+    <a
+        href="/add_instructor"
+        class="btn btn-primary">
+
+        + Add Instructor
+
+    </a>
+
+</header>
+
+
+<div class="app-content">
+
+    <div class="page-header">
+
+        <h1>
+            All Instructors
+        </h1>
+
+        <p>
+            Instructor ID, name, email and assigned courses.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        {% if instructors %}
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Instructor Name</th>
+                        <th>Email</th>
+                        <th>Assigned Courses</th>
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                {% for instructor in instructors %}
+
+                    <tr>
+
+                        <td>
+                            <strong>
+                                #{{ instructor[0] }}
+                            </strong>
+                        </td>
+
+                        <td>
+                            {{ instructor[1] }}
+                        </td>
+
+                        <td>
+                            {{ instructor[2] }}
+                        </td>
+
+                        <td>
+
+                            <span class="badge badge-info">
+                                {{ instructor[3] }}
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <a
+                                href="/delete_instructor/{{ instructor[0] }}"
+                                class="btn btn-danger"
+                                data-confirm="Delete this instructor?">
+
+                                Delete
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        {% else %}
+
+        <div class="empty-state">
+
+            <div class="empty-icon">
+                👨‍🏫
+            </div>
+
+            <h3>
+                No instructors
+            </h3>
+
+            <p>
+                Add your first instructor.
+            </p>
+
+            <br>
+
+            <a
+                href="/add_instructor"
+                class="btn btn-primary">
+
+                Add Instructor
+
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</main>
+
+</div>
+
+{% endblock %}
