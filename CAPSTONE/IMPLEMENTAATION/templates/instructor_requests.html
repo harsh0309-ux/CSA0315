@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% block title %}
+Instructor Requests | UniCourse
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-page">
+
+    <section class="dashboard-header">
+
+        <div>
+
+            <span class="section-label">
+                INSTRUCTOR PORTAL
+            </span>
+
+            <h1>
+                Student Requests 📋
+            </h1>
+
+            <p>
+                Review enrollment requests from your assigned courses.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="dashboard-panel">
+
+        {% if requests %}
+
+        <div class="table-responsive">
+
+            <table class="professional-table">
+
+                <thead>
+
+                    <tr>
+                        <th>Student</th>
+                        <th>Course</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for req in requests %}
+
+                    <tr>
+
+                        <td>
+                            {{ req[1] }}
+                        </td>
+
+                        <td>
+                            📘 {{ req[0] }}
+                        </td>
+
+                        <td>
+                            {{ req[2] }}
+                        </td>
+
+                        <td>
+
+                            {% if req[4] == 'Approved' %}
+
+                            <span class="status-badge approved">
+                                ✓ Approved
+                            </span>
+
+                            {% elif req[4] == 'Rejected' %}
+
+                            <span class="status-badge rejected">
+                                ✕ Rejected
+                            </span>
+
+                            {% else %}
+
+                            <span class="status-badge pending">
+                                ⏳ Pending
+                            </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+
+                            {% if req[4] == 'Pending' %}
+
+                            <div class="table-actions">
+
+                                <form method="POST"
+                                      action="/approve_request/{{ req[3] }}">
+
+                                    <button class="btn btn-success btn-small"
+                                            type="submit">
+                                        Approve
+                                    </button>
+
+                                </form>
+
+                                <form method="POST"
+                                      action="/reject_request/{{ req[3] }}">
+
+                                    <button class="btn btn-danger btn-small"
+                                            type="submit">
+                                        Reject
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+                            {% else %}
+
+                            Processed
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        {% else %}
+
+        <div class="empty-state">
+
+            <div class="empty-state-icon">
+                ✓
+            </div>
+
+            <h2>
+                No Requests
+            </h2>
+
+            <p>
+                No enrollment requests require your attention.
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </section>
+
+</div>
+
+{% endblock %}

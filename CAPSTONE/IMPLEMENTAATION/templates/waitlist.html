@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+
+{% block title %}
+Waitlist | UniCourse
+{% endblock %}
+
+{% block content %}
+
+<div class="app-layout">
+
+<aside class="app-sidebar">
+
+    <div class="app-brand">
+        <div class="app-brand-icon">⚙️</div>
+
+        <div>
+            <h2>UniCourse</h2>
+            <span>ADMIN PORTAL</span>
+        </div>
+    </div>
+
+    <nav class="app-nav">
+
+        <a href="/admin_dashboard">
+            📊 Dashboard
+        </a>
+
+        <a href="/view_courses">
+            📚 Courses
+        </a>
+
+        <a href="/view_instructors">
+            👨‍🏫 Instructors
+        </a>
+
+        <a href="/waitlist"
+           class="active">
+            ⏳ Waitlist
+        </a>
+
+        <a href="/reports">
+            📈 Reports
+        </a>
+
+        <a href="/logout">
+            🚪 Logout
+        </a>
+
+    </nav>
+
+</aside>
+
+
+<main class="app-main">
+
+<header class="app-topbar">
+
+    <div>
+        <h1>Waitlist Management</h1>
+        <p>Monitor students waiting for course seats</p>
+    </div>
+
+</header>
+
+
+<div class="app-content">
+
+    <div class="page-header">
+
+        <h1>
+            Course Waitlist
+        </h1>
+
+        <p>
+            Students are automatically promoted according to queue position.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        {% if waitlist %}
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Course</th>
+                        <th>Student</th>
+                        <th>Registration No.</th>
+                        <th>Position</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for item in waitlist %}
+
+                <tr>
+
+                    <td>
+                        <strong>
+                            {{ item[1] }}
+                        </strong>
+                    </td>
+
+                    <td>
+                        {{ item[2] }}
+                    </td>
+
+                    <td>
+                        {{ item[3] }}
+                    </td>
+
+                    <td>
+
+                        <span class="badge badge-warning">
+                            #{{ item[4] }}
+                        </span>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        {% else %}
+
+        <div class="empty-state">
+
+            <div class="empty-icon">
+                ⏳
+            </div>
+
+            <h3>
+                Waitlist is empty
+            </h3>
+
+            <p>
+                There are currently no students waiting.
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</main>
+
+</div>
+
+{% endblock %}

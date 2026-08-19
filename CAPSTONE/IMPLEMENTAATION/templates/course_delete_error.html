@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block title %}
+Cannot Delete Course | UniCourse
+{% endblock %}
+
+{% block content %}
+
+<div class="app-layout">
+
+<aside class="app-sidebar">
+
+    <div class="app-brand">
+        <div class="app-brand-icon">⚙️</div>
+
+        <div>
+            <h2>UniCourse</h2>
+            <span>ADMIN PORTAL</span>
+        </div>
+    </div>
+
+    <nav class="app-nav">
+
+        <a href="/admin_dashboard">
+            📊 Dashboard
+        </a>
+
+        <a href="/view_courses"
+           class="active">
+            📚 Courses
+        </a>
+
+        <a href="/add_course">
+            ➕ Add Course
+        </a>
+
+        <a href="/view_instructors">
+            👨‍🏫 Instructors
+        </a>
+
+        <a href="/reports">
+            📈 Reports
+        </a>
+
+        <a href="/logout">
+            🚪 Logout
+        </a>
+
+    </nav>
+
+</aside>
+
+
+<main class="app-main">
+
+<header class="app-topbar">
+
+    <div>
+        <h1>Course Deletion</h1>
+        <p>Action could not be completed</p>
+    </div>
+
+</header>
+
+
+<div class="app-content">
+
+    <div class="card empty-state">
+
+        <div class="empty-icon">
+            ⚠️
+        </div>
+
+        <h3>
+            Course cannot be deleted
+        </h3>
+
+        <p>
+            This course has existing academic records.
+        </p>
+
+        <br>
+
+        {% if enrollment_count > 0 %}
+
+        <p>
+            Enrollments:
+            <strong>
+                {{ enrollment_count }}
+            </strong>
+        </p>
+
+        {% endif %}
+
+
+        {% if waitlist_count > 0 %}
+
+        <p>
+            Waitlist entries:
+            <strong>
+                {{ waitlist_count }}
+            </strong>
+        </p>
+
+        {% endif %}
+
+        <br>
+
+        <a href="/view_courses"
+           class="btn btn-primary">
+
+            ← Back to Courses
+
+        </a>
+
+    </div>
+
+</div>
+
+</main>
+
+</div>
+
+{% endblock %}

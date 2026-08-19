@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>UniCourse | SIMATS Engineering</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            overflow-x: hidden;
+            background: #0b1730 !important;
+        }
+
+        /* =====================================================
+           MAIN HOME
+        ===================================================== */
+
+        .uc-home {
+            position: relative;
+
+            width: 100%;
+            min-height: 100vh;
+
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+
+            overflow: hidden;
+
+            background-image:
+                linear-gradient(
+                    rgba(5, 18, 40, 0.38),
+                    rgba(5, 18, 40, 0.48)
+                ),
+                url("/static/college.jpg");
+
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+
+        /* Soft overlay */
+
+        .uc-home::before {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(255,255,255,0.72) 0%,
+                    rgba(255,255,255,0.45) 35%,
+                    rgba(255,255,255,0.12) 70%,
+                    rgba(255,255,255,0.02) 100%
+                );
+
+            pointer-events: none;
+            z-index: 1;
+        }
+
+
+        /* =====================================================
+           TOP RIGHT PORTAL ICONS
+        ===================================================== */
+
+        .portal-menu {
+            position: absolute;
+
+            top: 28px;
+            right: 32px;
+
+            z-index: 20;
+
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+        }
+
+
+        .portal-item {
+            position: relative;
+
+            width: 48px;
+            height: 48px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 14px;
+
+            background: rgba(255,255,255,0.88);
+
+            border: 1px solid rgba(255,255,255,0.95);
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,0.15);
+
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+
+            text-decoration: none;
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease,
+                background 0.25s ease;
+        }
+
+
+        .portal-item:hover {
+            transform: translateY(-4px);
+
+            background: #ffffff;
+
+            box-shadow:
+                0 14px 30px rgba(0,0,0,0.22);
+        }
+
+
+        .portal-icon {
+            font-size: 21px;
+            line-height: 1;
+        }
+
+
+        /* Tooltip */
+
+        .portal-tooltip {
+            position: absolute;
+
+            top: 58px;
+            right: 0;
+
+            white-space: nowrap;
+
+            padding: 8px 12px;
+
+            border-radius: 8px;
+
+            background: #0b1b35;
+
+            color: white;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            opacity: 0;
+            visibility: hidden;
+
+            transform: translateY(-5px);
+
+            transition:
+                opacity 0.2s ease,
+                transform 0.2s ease,
+                visibility 0.2s ease;
+
+            box-shadow:
+                0 8px 20px rgba(0,0,0,0.20);
+        }
+
+
+        .portal-item:hover .portal-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+
+        /* =====================================================
+           CENTER CARD
+        ===================================================== */
+
+        .uc-card {
+            position: relative;
+
+            z-index: 5;
+
+            width: min(600px, 90%);
+
+            padding: 55px 50px;
+
+            text-align: center;
+
+            background: rgba(255,255,255,0.88);
+
+            border: 1px solid rgba(255,255,255,0.95);
+
+            border-radius: 26px;
+
+            box-shadow:
+                0 30px 80px rgba(0,0,0,0.22),
+                0 10px 30px rgba(0,0,0,0.12);
+
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+
+            animation: cardAppear 0.8s ease-out;
+        }
+
+
+        /* =====================================================
+           LABEL
+        ===================================================== */
+
+        .uc-label {
+            display: inline-block;
+
+            padding: 9px 20px;
+
+            margin-bottom: 25px;
+
+            border-radius: 50px;
+
+            background: #e5f0ff;
+
+            color: #0759d7;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+        }
+
+
+        /* =====================================================
+           SIMATS ENGINEERING
+        ===================================================== */
+
+        .uc-title {
+            margin: 0;
+
+            font-size: clamp(38px, 6vw, 62px);
+
+            line-height: 1.05;
+
+            font-weight: 900;
+
+            letter-spacing: -2px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #064fc4,
+                    #087ce8,
+                    #00a9d8
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+            text-shadow:
+                0 5px 20px rgba(0,100,220,0.15);
+        }
+
+
+        /* =====================================================
+           DIVIDER
+        ===================================================== */
+
+        .uc-divider {
+            width: 75px;
+
+            height: 4px;
+
+            margin: 25px auto 35px;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #0759d7,
+                    #00a9d8
+                );
+        }
+
+
+        /* =====================================================
+           MAIN BUTTONS
+        ===================================================== */
+
+        .uc-buttons {
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            gap: 16px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .uc-btn {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            min-width: 190px;
+
+            padding: 15px 25px;
+
+            border-radius: 12px;
+
+            text-decoration: none;
+
+            font-size: 15px;
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease,
+                background 0.25s ease;
+        }
+
+
+        .uc-login {
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0759d7,
+                    #00a9d8
+                );
+
+            box-shadow:
+                0 12px 30px rgba(0,100,220,0.28);
+        }
+
+
+        .uc-login:hover {
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 18px 38px rgba(0,100,220,0.38);
+        }
+
+
+        .uc-register {
+            color: #12305b;
+
+            background: rgba(255,255,255,0.96);
+
+            border: 1px solid #d5dfed;
+
+            box-shadow:
+                0 8px 20px rgba(0,0,0,0.08);
+        }
+
+
+        .uc-register:hover {
+            transform: translateY(-4px);
+
+            background: #ffffff;
+
+            box-shadow:
+                0 15px 30px rgba(0,0,0,0.13);
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .uc-footer {
+            position: absolute;
+
+            z-index: 10;
+
+            left: 0;
+            right: 0;
+
+            bottom: 20px;
+
+            text-align: center;
+
+            color: white;
+
+            font-size: 13px;
+
+            font-weight: 500;
+
+            text-shadow:
+                0 2px 8px rgba(0,0,0,0.7);
+        }
+
+
+        /* =====================================================
+           ANIMATION
+        ===================================================== */
+
+        @keyframes cardAppear {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(30px)
+                    scale(0.96);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 600px) {
+
+            .portal-menu {
+                top: 15px;
+                right: 15px;
+
+                gap: 8px;
+            }
+
+            .portal-item {
+                width: 42px;
+                height: 42px;
+
+                border-radius: 12px;
+            }
+
+            .portal-icon {
+                font-size: 18px;
+            }
+
+            .portal-tooltip {
+                display: none;
+            }
+
+            .uc-card {
+                width: calc(100% - 30px);
+
+                padding: 42px 22px;
+
+                border-radius: 22px;
+            }
+
+            .uc-label {
+                font-size: 10px;
+                padding: 8px 14px;
+            }
+
+            .uc-title {
+                font-size: 38px;
+                letter-spacing: -1px;
+            }
+
+            .uc-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .uc-btn {
+                width: 100%;
+                min-width: 0;
+            }
+
+            .uc-footer {
+                font-size: 11px;
+                bottom: 10px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<div class="uc-home">
+
+
+    <!-- =====================================================
+         INSTRUCTOR + ADMIN LOGIN
+         TOP RIGHT
+    ===================================================== -->
+
+    <div class="portal-menu">
+
+
+        <!-- INSTRUCTOR -->
+
+        <a href="/instructor_login"
+           class="portal-item"
+           aria-label="Instructor Login">
+
+            <span class="portal-icon">👨‍🏫</span>
+
+            <span class="portal-tooltip">
+                Instructor Login
+            </span>
+
+        </a>
+
+
+        <!-- ADMIN -->
+
+        <a href="/admin_login"
+           class="portal-item"
+           aria-label="Admin Login">
+
+            <span class="portal-icon">⚙️</span>
+
+            <span class="portal-tooltip">
+                Admin Login
+            </span>
+
+        </a>
+
+
+    </div>
+
+
+    <!-- =====================================================
+         CENTER
+    ===================================================== -->
+
+    <div class="uc-card">
+
+
+        <div class="uc-label">
+            University Course Management System
+        </div>
+
+
+        <h1 class="uc-title">
+            SIMATS ENGINEERING
+        </h1>
+
+
+        <div class="uc-divider"></div>
+
+
+        <div class="uc-buttons">
+
+
+            <!-- STUDENT LOGIN -->
+
+            <a href="/login"
+               class="uc-btn uc-login">
+
+                Student Login&nbsp; →
+
+            </a>
+
+
+            <!-- CREATE ACCOUNT -->
+
+            <a href="/register"
+               class="uc-btn uc-register">
+
+                Create Account&nbsp; →
+
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
+
+    <div class="uc-footer">
+
+        © 2026 UniCourse • SIMATS Engineering
+
+    </div>
+
+
+</div>
+
+</body>
+</html>

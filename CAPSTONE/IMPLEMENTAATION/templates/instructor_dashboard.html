@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+
+{% block title %}
+Instructor Dashboard | UniCourse
+{% endblock %}
+
+{% block content %}
+
+<div class="app-layout">
+
+<aside class="app-sidebar">
+
+    <div class="app-brand">
+
+        <div class="app-brand-icon">
+            👨‍🏫
+        </div>
+
+        <div>
+            <h2>UniCourse</h2>
+            <span>INSTRUCTOR PORTAL</span>
+        </div>
+
+    </div>
+
+
+    <nav class="app-nav">
+
+        <div class="app-nav-title">
+            Overview
+        </div>
+
+        <a href="/instructor_dashboard"
+           class="active">
+            📊 Dashboard
+        </a>
+
+        <div class="app-nav-title">
+            Teaching
+        </div>
+
+        <a href="/assigned_courses">
+            📚 Assigned Courses
+        </a>
+
+        <a href="/course_requests">
+            📝 Student Requests
+        </a>
+
+        <div class="app-nav-title">
+            Account
+        </div>
+
+        <a href="/logout">
+            🚪 Logout
+        </a>
+
+    </nav>
+
+</aside>
+
+
+<main class="app-main">
+
+<header class="app-topbar">
+
+    <div>
+
+        <h1>
+            Instructor Dashboard
+        </h1>
+
+        <p>
+            Manage your courses and student requests
+        </p>
+
+    </div>
+
+    <div class="user-chip">
+
+        <div class="user-avatar">
+            {{ instructor_name[0] }}
+        </div>
+
+    </div>
+
+</header>
+
+
+<div class="app-content">
+
+    <div class="page-header">
+
+        <h1>
+            Welcome, {{ instructor_name }} 👋
+        </h1>
+
+        <p>
+            Here's an overview of your teaching activity.
+        </p>
+
+    </div>
+
+
+    <div class="stat-grid">
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📚
+            </div>
+
+            <h2>
+                {{ total_courses }}
+            </h2>
+
+            <p>
+                Assigned Courses
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ⏳
+            </div>
+
+            <h2>
+                {{ pending }}
+            </h2>
+
+            <p>
+                Pending Requests
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ✓
+            </div>
+
+            <h2>
+                {{ approved }}
+            </h2>
+
+            <p>
+                Approved Students
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ✕
+            </div>
+
+            <h2>
+                {{ rejected }}
+            </h2>
+
+            <p>
+                Rejected Requests
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="grid grid-2">
+
+        <div class="card">
+
+            <h2>
+                Assigned Courses
+            </h2>
+
+            <p>
+                View the courses assigned to you.
+            </p>
+
+            <br>
+
+            <a href="/assigned_courses"
+               class="btn btn-primary">
+
+                View Courses →
+
+            </a>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>
+                Student Requests
+            </h2>
+
+            <p>
+                Review pending enrollment requests.
+            </p>
+
+            <br>
+
+            <a href="/course_requests"
+               class="btn btn-secondary">
+
+                Review Requests →
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</main>
+
+</div>
+
+{% endblock %}
